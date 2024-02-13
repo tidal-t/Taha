@@ -1,0 +1,90 @@
+@property --gradiant-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --clr1: #3b0f93;
+  --clr2: #4914b5;
+  --clr3: #4a48c6;
+  --clr4: #538dce;
+  --clr5: #66c9ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #222534;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.card {
+  height: 300px;
+  aspect-ratio: 1/1; /* نسبت عرض مثلا به ارتفاع تعیین شده */
+  border-radius: 0.3rem;
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.backColor{
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: #181c29;
+
+}
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: linear-gradient(
+    var(--gradiant-angle),
+    var(--clr1),
+    var(--clr2),
+    var(--clr3),
+    var(--clr4),
+    var(--clr5)
+  );
+  background-color: #181c29;
+  border-radius: inherit;
+  animation: rotation 5s linear infinite;
+  transition: all 0.5s ease;
+}
+.card::after {
+  filter: blur(3rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradiant-angle: 0deg;
+  }
+  100% {
+    --gradiant-angle: 360deg;
+  }
+}
+.card img {
+  width: 250px;
+  transition: all 0.5s ease;
+  z-index: 100;
+}
+.card:hover img {
+  transform: scale(1.2);
+}
+.card:hover::before,
+.card:hover::after {
+}
+.card:hover {
+  transform: scale(0.9);
+}
